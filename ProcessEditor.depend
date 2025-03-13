@@ -1,16 +1,16 @@
 # depslib dependency file v1.0
-1741800504 source:c:\users\bartek\desktop\projects\cpp\processeditor\main.cpp
+1741801176 source:c:\users\bartek\desktop\projects\cpp\processeditor\main.cpp
 	"ProcessEditor.h"
 	<iostream>
 	"windows.h"
 
-1741800468 c:\users\bartek\desktop\projects\cpp\processeditor\processeditor.h
+1741801380 c:\users\bartek\desktop\projects\cpp\processeditor\processeditor.h
 	<windows.h>
 	<string>
 	<vector>
 	<unordered_map>
 
-1741800460 source:c:\users\bartek\desktop\projects\cpp\processeditor\processeditor.cpp
+1741801453 source:c:\users\bartek\desktop\projects\cpp\processeditor\processeditor.cpp
 	"ProcessEditor.h"
 	<tlhelp32.h>
 	<iostream>

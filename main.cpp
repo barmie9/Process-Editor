@@ -4,31 +4,6 @@
 
 using namespace std;
 
-void AddReturnJump(std::vector<uint8_t>& newCode, uintptr_t baseAddress, bool isTarget32Bit) {
-    // Oblicz adres powrotu
-    uintptr_t returnAddress;
-    if (isTarget32Bit) {
-        returnAddress = baseAddress + 5; // Dla 32-bitowych procesów
-    } else {
-        returnAddress = baseAddress + 14; // Dla 64-bitowych procesów
-    }
-
-    // Dodaj skok powrotny
-    if (isTarget32Bit) {
-        // Dla 32-bitowych procesów: JMP rel32
-        newCode.push_back(0xE9); // Opcode dla JMP
-        uint32_t offset = (uint32_t)(returnAddress - (baseAddress + newCode.size() + 5)); // Oblicz offset
-        newCode.insert(newCode.end(), reinterpret_cast<uint8_t*>(&offset), reinterpret_cast<uint8_t*>(&offset) + 4);
-    } else {
-        // Dla 64-bitowych procesów: JMP [RIP+0]
-        newCode.insert(newCode.end(), { 0xFF, 0x25, 0x00, 0x00, 0x00, 0x00 }); // JMP [RIP+0]
-        // Dodaj 64-bitowy adres docelowy (little-endian)
-        for (int i = 0; i < 8; ++i) {
-            newCode.push_back((returnAddress >> (i * 8)) & 0xFF);
-        }
-    }
-}
-
 int main() {
     string PROCESS_NAME = "Tutorial-x86_64.exe";
     //string PROCESS_NAME = "Tutorial-i386.exe";
